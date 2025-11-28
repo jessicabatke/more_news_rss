@@ -27,7 +27,7 @@ jobs:
     
     - name: Run scraper and generate feeds
       run: |
-        python generate_feed.py
+        python news_rss_feeds.py
     
     - name: Commit and push if changed
       run: |
