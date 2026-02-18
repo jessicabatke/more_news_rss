@@ -5,14 +5,16 @@ from datetime import datetime
 
 url_dict = {
     "NPR":" https://www.npr.org/tags/127994355/china",
-    "AP": "https://apnews.com/hub/china"
+    "AP": "https://apnews.com/hub/china",
+    "RoW_China": "https://restofworld.org/region/china/",
+    "RoW_OutChina": "https://restofworld.org/series/china-outside-china/"
 }
 
 
 
 def scrape(website, website_url):
     print(website_url)
-    if website == "NPR":
+    if website == "NPR" or "RoW" in website:
         feature = "h2"
     else:
         feature = "h3"
