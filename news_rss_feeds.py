@@ -14,32 +14,52 @@ url_dict = {
 
 def scrape(website, website_url):
     print(website_url)
-    if website == "NPR" or "RoW" in website:
+
+    if website == "NPR":
         feature = "h2"
-    else:
+    elif website == "AP":
         feature = "h3"
+    elif "RoW" in website:
+        feature = "a.grid-story__link.article-link"
+    else:
+        return []
+
     items = []
     response = requests.get(website_url)
-    # Parse the HTML
     soup = BeautifulSoup(response.content, 'html.parser')
-    #print(soup)
-    # Find all h2 elements
-    titles = soup.find_all(feature)    
+
+    titles = soup.select(feature)
+
     for title in titles:
         # print(title)
-        # Find the <a> tag within each h2
-        link_tag = title.find('a')
-        if link_tag:  # Check if <a> exists
-            link = link_tag.get('href')
-            title_text = link_tag.get_text().strip()
+        # print("")
+        link = None
+        title_text = None
+        # --- RoW structure ---
+        if "RoW" in website:
+            link = title.get('href')
+            h2 = title.find('h2')
+            if h2:
+                title_text = h2.get_text(strip=True)
+
+        # --- NPR / AP structure ---
+        else:
+            link_tag = title.find('a')
+            if link_tag:
+                link = link_tag.get('href')
+                title_text = link_tag.get_text(strip=True)
+
+        # Only append if both exist
+        if link and title_text:
+            items.append({
+                'title': title_text,
+                'link': link
+            })
             print(f"Link: {link}")
             print(f"Title: {title_text}")
-            items.append({
-                    'title': title_text,
-                    'link': link
-                })
+
     return items
-    print("")
+
 
 # Function to create RSS feed
 def create_rss_feed(site_name, items, filename):
