@@ -19,8 +19,10 @@ def scrape(website, website_url):
         feature = "h2"
     elif website == "AP":
         feature = "h3"
-    elif "RoW" in website:
+    elif website == "RoW_Out":
         feature = "a.grid-story__link.article-link"
+    elif website == "RoW":
+        feature = "a.article-link"
     else:
         return []
 
