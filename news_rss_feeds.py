@@ -6,8 +6,8 @@ from datetime import datetime
 url_dict = {
     "NPR":" https://www.npr.org/tags/127994355/china",
     "AP": "https://apnews.com/hub/china",
-    "RoW_China": "https://restofworld.org/region/china/",
-    "RoW_OutChina": "https://restofworld.org/series/china-outside-china/"
+    "RoW": "https://restofworld.org/region/china/",
+    "RoW_Out": "https://restofworld.org/series/china-outside-china/"
 }
 
 
