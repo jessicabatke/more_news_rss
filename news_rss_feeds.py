@@ -7,7 +7,8 @@ url_dict = {
     "NPR":" https://www.npr.org/tags/127994355/china",
     "AP": "https://apnews.com/hub/china",
     "RoW": "https://restofworld.org/region/china/",
-    "RoW_Out": "https://restofworld.org/series/china-outside-china/"
+    "RoW_Out": "https://restofworld.org/series/china-outside-china/",
+    "CMP": "https://chinamediaproject.org/"
 }
 
 
@@ -23,6 +24,8 @@ def scrape(website, website_url):
         feature = "a.grid-story__link.article-link"
     elif website == "RoW":
         feature = "a.article-link"
+    elif website == "CMP":
+        feature = "a.uk-display-block.uk-panel.uk-margin-remove-first-child.uk-link-toggle"
     else:
         return []
 
@@ -43,7 +46,12 @@ def scrape(website, website_url):
             h2 = title.find('h2')
             if h2:
                 title_text = h2.get_text(strip=True)
-
+        # --- CMP structure ---
+        elif "CMP" in website:
+            link = title.get('href')
+            h3 = title.find('h3')
+            if h3:
+                title_text = h3.get_text(strip=True)
         # --- NPR / AP structure ---
         else:
             link_tag = title.find('a')
