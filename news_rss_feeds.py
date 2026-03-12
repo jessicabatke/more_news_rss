@@ -8,7 +8,8 @@ url_dict = {
     "AP": "https://apnews.com/hub/china",
     "RoW": "https://restofworld.org/region/china/",
     "RoW_Out": "https://restofworld.org/series/china-outside-china/",
-    "CMP": "https://chinamediaproject.org/"
+    "CMP": "https://chinamediaproject.org/",
+    "HKFP": "https://hongkongfp.com/china-news/"
 }
 
 
