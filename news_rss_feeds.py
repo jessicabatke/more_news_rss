@@ -17,7 +17,7 @@ url_dict = {
 def scrape(website, website_url):
     print(website_url)
 
-    if website == "NPR":
+    if website == "NPR" or website == "HKFP":
         feature = "h2"
     elif website == "AP":
         feature = "h3"
